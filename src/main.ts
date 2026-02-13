@@ -2,6 +2,6 @@ import app from './globals.ts'
 import { useAuthStore } from '@/stores'
 
 const auth = useAuthStore()
-await auth.syncWithServer()
+await auth.sync()
 
 app.mount('#app')

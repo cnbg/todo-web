@@ -51,6 +51,7 @@ export const useAuthStore = defineStore('auth-store', {
                 this.user = data.value as AuthUser
             }
 
+            this.jwt_exp = parseJwt(await cookie.get('access') || '')?.exp ?? 0
             await this.setLocale(this.user.locale)
             await this.setTheme(this.user.theme)
 
@@ -86,8 +87,6 @@ export const useAuthStore = defineStore('auth-store', {
                 cookie.set('username', this.username, { days: 365 })
                 await this.setData(data.value)
             }
-
-            console.log(this.user)
 
             this.loading = false
         },
@@ -158,21 +157,14 @@ export const useAuthStore = defineStore('auth-store', {
             }
             if (save) await useAuthHttp('/auth/update').put({ theme: this.theme }).json()
         },
-        async syncWithServer() {
-            await this.sync()
-            if (window.location.pathname.includes('/auth/login')) return
-
-            if (!this.isAuth) {
-                await this.logout()
-                return
-            }
-
-            await this.profile()
-        },
         async sync() {
             this.jwt_exp = parseJwt(await cookie.get('access') || '')?.exp ?? 0
             await this.setLocale()
             await this.setTheme()
+
+            if (window.location.pathname.includes('/auth/login')) return
+
+            await this.profile()
         },
     },
 })
