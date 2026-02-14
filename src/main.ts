@@ -1,6 +1,6 @@
 import app from './globals.ts'
 import { useAuthStore } from '@/stores'
-import './registerServiceWorker.js'
+// import './registerServiceWorker.ts'
 
 const auth = useAuthStore()
 await auth.sync()

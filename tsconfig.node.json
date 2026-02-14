@@ -1,7 +1,6 @@
 {
   "extends": "@tsconfig/node24/tsconfig.json",
   "include": [
-    "vue.config.*",
     "tailwind.config.*",
     "vite.config.*",
     "vitest.config.*",

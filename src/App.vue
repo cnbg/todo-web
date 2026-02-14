@@ -19,15 +19,6 @@ useEventListener(document, EventName.SHOW_TOAST, (event: CustomEvent<ToastMessag
     life: event.detail.life || 3000,
   })
 })
-
-// document.addEventListener(EventName.SHOW_TOAST, (event: CustomEvent<ToastMessageOptions>) => {
-//   toast.add({
-//     severity: event.detail.severity || 'info',
-//     summary: t(event.detail.summary || ''),
-//     detail: t(event.detail.detail),
-//     life: event.detail.life || 3000,
-//   })
-// })
 </script>
 
 <template>
