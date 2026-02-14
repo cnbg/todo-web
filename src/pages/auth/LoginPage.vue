@@ -14,7 +14,7 @@ const login = async () => {
 
 onBeforeMount(async () => {
   auth.username = await cookie.get('username') || ''
-  auth.password = '123456'
+  auth.password = ''
 })
 </script>
 
