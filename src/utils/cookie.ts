@@ -12,7 +12,7 @@ const Cookie = {
             secure?: boolean
             sameSite?: 'strict' | 'lax' | 'none'
         } = {},
-    ): void {
+    ): Promise<void> {
         await cookieStore.set({
             name: name,
             value: value,
@@ -26,9 +26,9 @@ const Cookie = {
     /**
      * Read a cookie by name
      */
-    async get(name: string): string | null {
+    async get(name: string): Promise<string | null> {
         const cookie = await cookieStore.get(name)
-        return cookie ? cookie.value : null
+        return cookie?.value || null
     },
 
     /**
@@ -37,7 +37,7 @@ const Cookie = {
     async delete(name: string, options: {
         path?: string
         domain?: string
-    } = {}): void {
+    } = {}): Promise<void> {
         await cookieStore.delete({
             name: name,
             path: options.path,

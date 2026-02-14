@@ -2,12 +2,12 @@ import { createI18n } from 'vue-i18n'
 import messages from '@/locales/messages'
 import { getLocale } from '@/utils'
 
-const keys = Object.keys(messages)
-const ru = {}
-const en = {}
+const keys = Object.keys(messages) as string[]
+const ru = {} as Record<string, string>
+const en = {} as Record<string, string>
 keys.forEach(key => {
-    ru[key] = messages[key]['ru']
-    en[key] = messages[key]['en']
+    ru[key] = messages[key]?.ru || key
+    en[key] = messages[key]?.en || key
 })
 
 const i18n = createI18n({

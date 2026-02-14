@@ -1,4 +1,11 @@
-export default {
+interface Messages {
+    [key: string]: {
+        ru: string
+        en: string
+    }
+}
+
+const messages: Messages = {
     homepage: {
         ru: 'Главная страница',
         en: 'Homepage',
@@ -148,3 +155,5 @@ export default {
         en: 'Role',
     },
 }
+
+export default messages

@@ -1,6 +1,6 @@
 import { usePreferredDark } from '@vueuse/core'
 
-export function parseDate(date, defaultValue = '') {
+export function parseDate(date: string, defaultValue = '') {
     try {
         return (new Date(date)).toLocaleDateString()
     } catch (error) {
@@ -18,7 +18,7 @@ export function goto(path: string) {
 
 export function parseJwt(token: string) {
     try {
-        const base64Url = token.split('.')[1]
+        const base64Url = token.split('.')[1] || '';
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);

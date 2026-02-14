@@ -1,1 +1,1 @@
-export { useAuthHttp } from './useAuthHttp.ts'
+export { default as useAuthHttp } from './useAuthHttp.ts'

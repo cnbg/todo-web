@@ -40,4 +40,4 @@ async function refresh() {
     await auth.refresh()
 }
 
-export { useAuthHttp }
+export default useAuthHttp

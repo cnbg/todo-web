@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { useFetch } from '@vueuse/core'
 import { useAuthHttp } from '@/composables'
 import { cookie, getLocale, getTheme, goto, isValidEmail, parseJwt } from '@/utils'
-import type { AuthUser, LoginRequest, LoginResponse } from '@/types'
+import type { AuthUser, LoginResponse } from '@/types'
 
 interface AuthState {
     user: AuthUser
@@ -19,7 +19,7 @@ interface AuthState {
 
 const baseUrl = import.meta.env.VITE_API_URL!
 
-export const useAuthStore = defineStore('auth-store', {
+const useAuthStore = defineStore('auth-store', {
     state: (): AuthState => ({
         user: {} as AuthUser,
         username: '',
@@ -79,7 +79,7 @@ export const useAuthStore = defineStore('auth-store', {
             const { data, error } = await useFetch<LoginResponse>(baseUrl + '/auth/login').post({
                 username: this.username,
                 password: this.password,
-            } as LoginRequest).json()
+            }).json()
 
             if (error.value) {
                 this.errors.push(error.value.message || 'invalid_username_or_password')
@@ -168,3 +168,5 @@ export const useAuthStore = defineStore('auth-store', {
         },
     },
 })
+
+export default useAuthStore
