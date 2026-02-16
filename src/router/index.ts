@@ -1,4 +1,3 @@
-import { isJwtExpired, goto, cookie } from '@/utils'
 import { createRouter, createWebHistory } from 'vue-router'
 
 import homeRoutes from './home'
